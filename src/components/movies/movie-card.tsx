@@ -1,11 +1,17 @@
 import { Movie } from "@/models";
 import { FaStar } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
 
 export interface MovieCardProps {
     movie: Movie;
 }
 
 export function MovieCard({ movie }: MovieCardProps) {
+    const navigate = useNavigate();
+
+    const handleClickButton = () => {
+        navigate(`/movie/${movie.id}`);
+    };
     return (
         <div className="flex flex-col h-full p-3 text-white rounded-lg select-none bg-slate-800">
             <img
@@ -24,7 +30,10 @@ export function MovieCard({ movie }: MovieCardProps) {
                         <FaStar className="text-yellow-300 " />
                     </div>
                 </div>
-                <button className="w-full px-6 py-3 mt-auto capitalize rounded-lg bg-primary">
+                <button
+                    className="w-full px-6 py-3 mt-auto capitalize rounded-lg bg-primary"
+                    onClick={handleClickButton}
+                >
                     {" "}
                     Watch now
                 </button>
