@@ -1,15 +1,18 @@
 import * as React from "react";
 
-export interface ISearchProps {}
+export interface ISearchProps {
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-export function Search(props: ISearchProps) {
+export function Search({ handleChange }: ISearchProps) {
     return (
         <div className="flex mb-10 ">
             <div className="flex-1">
                 <input
                     type="text"
-                    className="w-full p-3 outline-none bg-slate-800"
+                    className="w-full p-3 outline-none bg-slate-800 text-white"
                     placeholder="Search movie..."
+                    onChange={handleChange}
                 />
             </div>
             <button className="p-3 text-white bg-primary">
