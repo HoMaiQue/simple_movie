@@ -1,7 +1,7 @@
 import { UseMovieList } from "../../fetch";
-import { Movie } from "@/models";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BannerItem } from "./banner-item";
+import { Movie } from "models";
 
 export interface BannerProps {
     type: string;

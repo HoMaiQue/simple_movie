@@ -1,4 +1,5 @@
-import { Movie } from "@/models";
+
+import { Movie } from "models";
 import { FaStar } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 

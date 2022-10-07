@@ -1,4 +1,4 @@
-import { Cast } from "@/models/cast";
+import { Cast } from "models/cast";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { CastItem } from "./cast-item";

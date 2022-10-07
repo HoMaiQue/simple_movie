@@ -1,17 +1,45 @@
-import { Movie } from "@/models";
-import * as React from "react";
-import { MovieList } from "./movie-list";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Movie } from "models";
+import { MovieCard } from "./movie-card";
+import { MovieCartSkeleton } from "./movie-card-skeleton";
+import { UseMovieList } from "fetch";
 export interface MovieSlideProps {
-    title: string;
+    type: string;
 }
 
-export function MovieSlide({ title }: MovieSlideProps) {
+export function MovieSlide({ type }: MovieSlideProps) {
+    const { movieList, error, data } = UseMovieList(type);
+    const loading = !data && !error;
     return (
-        <section className="pb-10 page-container">
-            <h2 className="mb-10 text-2xl font-bold text-white">{title}</h2>
+        <div className="movie-list ">
+            {!loading && (
+                <Swiper
+                    grabCursor={true}
+                    slidesPerView={"auto"}
+                    spaceBetween={40}
+                >
+                    {movieList.length > 0 &&
+                        movieList.map((movie: Movie) => (
+                            <SwiperSlide key={movie.id}>
+                                <MovieCard movie={movie} />
+                            </SwiperSlide>
+                        ))}
+                </Swiper>
+            )}
 
-            <MovieList type="now_playing" />
-        </section>
+            {loading && (
+                <Swiper
+                    grabCursor={true}
+                    slidesPerView={"auto"}
+                    spaceBetween={40}
+                >
+                    {Array.from(Array(10).keys()).map((item) => (
+                        <SwiperSlide key={item}>
+                            <MovieCartSkeleton />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            )}
+        </div>
     );
 }

@@ -1,15 +1,15 @@
-import { Main } from "../layouts/index";
-import { Banner } from "../components/banner";
-import { MovieList } from "../components/movies";
-import { MovieSlide } from "../components/movies";
+import { Banner } from "components/banner";
+import { MovieTopic } from "components/movies";
+import { Main } from "layouts";
 
-export function HomePage() {
+
+export default function HomePage() {
     return (
         <Main>
             <Banner type="upcoming" />
-            <MovieSlide title=" Now Playing" />
-            <MovieSlide title="  top_Rated" />
-            <MovieSlide title="  Trending" />
+            <MovieTopic type="now_playing" title="Now Playing" />
+            <MovieTopic type="top_rated" title="Top_Rated" />
+            <MovieTopic type="upcoming" title="Trending" />
         </Main>
     );
 }

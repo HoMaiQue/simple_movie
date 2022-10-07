@@ -1,24 +1,26 @@
-import { UseMovieList } from "../../fetch";
-import { Movie } from "@/models";
-import { Swiper, SwiperSlide } from "swiper/react";
-
+import { Movie } from "models";
+import * as React from "react";
 import { MovieCard } from "./movie-card";
+import { MovieCartSkeleton } from "./movie-card-skeleton";
+
 export interface MovieListProps {
-    type: string;
+    movieList: Movie[];
+    loading: boolean;
 }
 
-export function MovieList({ type }: MovieListProps) {
-    const { movieList } = UseMovieList(type);
+export function MovieList({ movieList, loading }: MovieListProps) {
     return (
-        <div className="movie-list ">
-            <Swiper grabCursor={true} slidesPerView={"auto"} spaceBetween={40}>
-                {movieList.length > 0 &&
-                    movieList.map((movie: Movie) => (
-                        <SwiperSlide key={movie.id}>
-                            <MovieCard movie={movie} />
-                        </SwiperSlide>
-                    ))}
-            </Swiper>
+        <div className="grid grid-cols-4 gap-10 ">
+            {!loading &&
+                movieList.length > 0 &&
+                movieList.map((movie: Movie) => (
+                    <MovieCard key={movie.id} movie={movie} />
+                ))}
+
+            {loading &&
+                Array.from(Array(20).keys()).map((item: number) => (
+                    <MovieCartSkeleton key={item} />
+                ))}
         </div>
     );
 }

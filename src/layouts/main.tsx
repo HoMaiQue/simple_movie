@@ -1,5 +1,6 @@
+import { LayoutProps } from "models";
 import { Footer, Header } from "../components/common";
-import { LayoutProps } from "@/models";
+
 
 export function Main({ children }: LayoutProps) {
     return (
